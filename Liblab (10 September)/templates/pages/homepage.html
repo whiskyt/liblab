@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>liblab </title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+  <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  <link rel="stylesheet" href="https://m.w3newbie.com/you-tube.css">
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".account").click(function () {
+        var X = $(this).attr('id');
+        if (X == 1) {
+          $(".submenu").hide();
+          $(this).attr('id', '0');
+        }
+        else {
+          $(".submenu").show();
+          $(this).attr('id', '1');
+        }
+      });
+      $(".submenu").mouseup(function () {
+        return false
+      });
+      $(".account").mouseup(function () {
+        return false
+      });
+      $(document).mouseup(function () {
+        $(".submenu").hide();
+        $(".account").attr('id', '');
+      });
+    });
+
+  </script>
+</head>
+
+<body>
+
+
+
+  <a href="http://127.0.0.1:8000/">Homepage</a>
+  <a href="http://127.0.0.1:8000/display">Display</a>
+
+
+  {% if user.is_authenticated %}
+  Hi {{ user.username }}!
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="http://127.0.0.1:8000/">liblab</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Hi {{ user.username }}!</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+            <a href="#"  class="account">
+              <img src="{% static 'images/logo.png' %}" class="profile-circle" />
+            </a>
+            <div class="submenu" style="display: none; ">
+              <ul class="root">
+                <li>
+                  <a href="http://127.0.0.1:8000/display">Dashboard</a>
+                </li>
+                <li>
+                  <a href="#">Profile</a>
+                </li>
+                <li>
+                  <a href="#">Settings</a>
+                </li>
+                <li>
+                  <a href="http://127.0.0.1:8000/logout/">Sign Out</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <p><a href="http://127.0.0.1:8000/logout/">logout</a></p>
+
+
+  {% else %}
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="http://127.0.0.1:8000/">liblab</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="http://127.0.0.1:8000/login">Sign In</a>
+        </li>
+        <li class="nav-item">
+
+      </ul>
+    </div>
+  </nav>
+  <p>You are not logged in</p>
+  <img src="http://i.stack.imgur.com/SBv4T.gif" alt="this slowpoke moves" width=250 />
+
+  <h1>Welcome to liblab</h1>
+  <a href="http://127.0.0.1:8000/display">Display</a>
+
+  {% endif %}
+
+</body>
+
+</html>
